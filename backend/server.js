@@ -1,4 +1,4 @@
-dotenv.config();
+
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -8,19 +8,22 @@ import serviceRoutes from "./routes/serviceRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
 
+dotenv.config();
 // Connect Database
 connectDB();
 
 const app = express();
 
 // Middleware
-app.use(cors({
+app.use(
+  cors({
     origin: [
     "http://localhost:5173",
-    "https://service-booking-bay-one.vercel.app/"
+    "https://service-booking-bay-one.vercel.app"
   ],
   credentials: true
-}));
+})
+);
 
 app.use(express.json());
 app.use("/api/auth", authRoutes);

@@ -14,7 +14,14 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: [
+    "http://localhost:5173",
+    "https://service-booking-bay-one.vercel.app/"
+  ],
+  credentials: true
+}));
+
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/services", serviceRoutes);
